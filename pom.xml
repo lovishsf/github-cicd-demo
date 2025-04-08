@@ -39,7 +39,7 @@
 						<muleVersion>4.9.0</muleVersion>
 						<username>${anypoint.username}</username>
 						<password>${anypoint.password}</password>
-						<applicationName>mule-github-cicd-demo-${env.ENVIRONMENT}</applicationName>
+						<applicationName>mule-github-cicd-demo-${env}</applicationName>
 						<environment>${env}</environment>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
