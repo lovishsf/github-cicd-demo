@@ -76,8 +76,4 @@ jobs:
     - name: Deploy to DESIGN
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn clean deploy -B -s .maven/settings.xml -DskipTests -DmuleDeploy \
-         -Dmule.artifact=$artifactName \
-         -Danypoint.username= ${{ secrets.anypoint_platform_username }} \
-         -Danypoint.password=${{ secrets.anypoint_platform_password }} \
-         -Denv=${{ secrets.ENVIRONMENT }}
+        mvn clean deploy -B -s .maven/settings.xml -DskipTests -DmuleDeploy -Dmule.artifact=$artifactName -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
