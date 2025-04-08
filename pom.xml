@@ -32,15 +32,15 @@
 				<version>${mule.maven.plugin.version}</version>
 				<extensions>true</extensions>
 				<configuration>
-
+				    <classifier>mule-application</classifier>
 					<cloudHub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
 						<muleVersion>4.9.0</muleVersion>
-						<username>${env.ANYPOINT_PLATFORM_USERNAME}</username>
-						<password>${env.ANYPOINT_PLATFORM_PASSWORD}</password>
+						<username>${anypoint.username}</username>
+						<password>${anypoint.password}</password>
 						<applicationName>mule-github-cicd-demo-${env.ENVIRONMENT}</applicationName>
-						<environment>${env.ENVIRONMENT}</environment>
+						<environment>${env}</environment>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
 						<target>Cloudhub-US-East-1</target>
@@ -53,8 +53,6 @@
 							</http>
 						</deploymentSettings>
 					</cloudHub2Deployment>
-
-					<classifier>mule-application</classifier>
 
 				</configuration>
 			</plugin>

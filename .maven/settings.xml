@@ -1,39 +1,24 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml version="1.0"?>
 <settings>
-  <servers>
-    <server>
-      <id>MuleRepository</id>
-      <username>${env.ANYPOINT_PLATFORM_USERNAME}</username>
-      <password>${env.ANYPOINT_PLATFORM_PASSWORD}</password>
-    </server>
-    <server>
-      <id>anypoint-exchange-v3</id>
-      <username>${env.ANYPOINT_PLATFORM_USERNAME}</username>
-      <password>${env.ANYPOINT_PLATFORM_PASSWORD}</password>
-    </server>
-  </servers>
+
   <pluginGroups>
     <pluginGroup>org.mule.tools</pluginGroup>
   </pluginGroups>
+
+  <servers>
+    <server>
+      <id>MuleRepository</id>
+      <username>${anypoint.username}</username>
+      <password>${anypoint.password}</password>
+    </server>
+    <server>
+      <id>anypoint-exchange-v3</id>
+      <username>${anypoint.username}</username>
+      <password>${anypoint.password}</password>
+    </server>
+  </servers>
+
   <profiles>
-    <profile>
-      <id>mule-extra-repos</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <repositories>
-        <repository>
-          <id>mule-public</id>
-          <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
-        </repository>
-      </repositories>
-      <pluginRepositories>
-        <pluginRepository>
-          <id>mule-public</id>
-          <url>https://repository.mulesoft.org/nexus/content/repositories/public</url>
-        </pluginRepository>
-      </pluginRepositories>
-    </profile>
     <profile>
       <id>Mule</id>
       <activation>
@@ -51,7 +36,7 @@
           <snapshots>
             <enabled>true</enabled>
           </snapshots>
-        </repository>
+        </repository>     
       </repositories>
     </profile>
   </profiles>
