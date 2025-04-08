@@ -73,10 +73,10 @@ jobs:
     - uses: actions/download-artifact@v4
       with:
         name: artifacts
-    - name: Deploy to Sandbox
+    - name: Deploy to DESIGN
       run: |
         artifactName=$(ls *.jar | head -1)
-        mvn deploy -DskipMunitTests -DmuleDeploy \
+        mvn clean deploy -B -s .m2/settings.xml -DskipTests -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -Danypoint.username= ${{ secrets.anypoint_platform_username }} \
          -Danypoint.password=${{ secrets.anypoint_platform_password }} \
