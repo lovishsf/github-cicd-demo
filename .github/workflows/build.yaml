@@ -7,10 +7,6 @@ on:
   pull_request:
     branches: [ main ]
 
-env:
-  ENVIRONMENT: ${{ secrets.ENVIRONMENT }}
-  nexus_username: ${{ secrets.anypoint_platform_username }}
-  nexus_password: ${{ secrets.anypoint_platform_password }}
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -81,10 +77,11 @@ jobs:
       env:
         USERNAME: ${{ secrets.anypoint_platform_username }}
         PASSWORD: ${{ secrets.anypoint_platform_password }}
-        KEY: ${{ secrets.decryption_key }}
+        ENV: ${{ secrets.ENVIRONMENT }}
       run: |
         artifactName=$(ls *.jar | head -1)
         mvn deploy -DskipMunitTests -DmuleDeploy \
          -Dmule.artifact=$artifactName \
          -Danypoint.username="$USERNAME" \
          -Danypoint.password="$PASSWORD" \
+         -Denv="$ENVIRONMENT"
