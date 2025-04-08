@@ -42,7 +42,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
-        java-version: 8
+        java-version: 17
     - name: Build with Maven
       run: mvn -B package --file pom.xml -DskipMunitTests
     - name: Stamp artifact file name with commit hash
@@ -74,6 +74,4 @@ jobs:
       with:
         name: artifacts
     - name: Deploy to DESIGN
-      run: |
-        artifactName=$(ls *.jar | head -1)
-        mvn clean deploy -B -s .maven/settings.xml -DskipTests -DmuleDeploy -Dmule.artifact=$artifactName -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
+      run: mvn clean deploy -B -s .maven/settings.xml -DskipTests -DmuleDeploy -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
