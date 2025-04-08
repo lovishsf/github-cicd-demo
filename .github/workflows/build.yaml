@@ -21,7 +21,7 @@ jobs:
     steps:
 #first, we need to checkout our mule application's branch code
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 #second, cache dependencies, No need to download every time
       - name: cache dependencies
         uses: actions/setup-java@v2
@@ -35,7 +35,7 @@ jobs:
 #fourth, upload artifact, to utilize for other repo.(optional)
       - name: upload Artifact
         run: mkdir staging && cp target/*.jar staging
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v4
         with:
           name: Package
           path: staging
