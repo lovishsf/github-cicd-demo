@@ -33,21 +33,26 @@
 				<extensions>true</extensions>
 				<configuration>
 
-					<cloudHubDeployment>
+					<cloudHub2Deployment>
+						<uri>https://anypoint.mulesoft.com</uri>
+						<provider>MC</provider>
 						<muleVersion>4.9.0</muleVersion>
 						<username>${env.ANYPOINT_PLATFORM_USERNAME}</username>
 						<password>${env.ANYPOINT_PLATFORM_PASSWORD}</password>
 						<applicationName>mule-github-cicd-demo-${env.ENVIRONMENT}</applicationName>
 						<environment>${env.ENVIRONMENT}</environment>
-						<workers>1</workers>
-						<workerType>MICRO</workerType>
-						<objectStoreV2>true</objectStoreV2>
-						<region>us-east-2</region>
-						<properties>
-							#add your enviorment properties here.
-							<mule.env>${env.ENVIRONMENT}</mule.env>
-						</properties>
-					</cloudHubDeployment>
+						<replicas>1</replicas>
+						<vCores>1</vCores>
+						<target>Cloudhub-US-East-1</target>
+						<deploymentSettings>
+							<http>
+								<inbound>
+									<forwardSslSession>true</forwardSslSession>
+									<lastMileSecurity>true</lastMileSecurity>
+								</inbound>
+							</http>
+						</deploymentSettings>
+					</cloudHub2Deployment>
 
 					<classifier>mule-application</classifier>
 
