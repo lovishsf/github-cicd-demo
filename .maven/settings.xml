@@ -16,6 +16,11 @@
       <username>${anypoint.username}</username>
       <password>${anypoint.password}</password>
     </server>
+    <server>
+      <id>mulesoft-releases</id>
+      <username>${anypoint.username}</username>
+      <password>${anypoint.password}</password>
+    </server>
   </servers>
 
   <profiles>

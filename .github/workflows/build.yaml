@@ -38,7 +38,7 @@ jobs:
         key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
         restore-keys: |
           ${{ runner.os }}-maven-
-    - name: Set up JDK 1.8
+    - name: Set up JDK 17
       uses: actions/setup-java@v3
       with:
         distribution: 'zulu'
@@ -74,4 +74,4 @@ jobs:
       with:
         name: artifacts
     - name: Deploy to DESIGN
-      run: mvn clean deploy -B -s .maven/settings.xml -DskipTests -DmuleDeploy -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
+      run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
