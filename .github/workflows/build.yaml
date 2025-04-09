@@ -60,7 +60,34 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    steps:    
+    steps: 
+    - name: Setup Maven Action
+      uses: s4u/setup-maven-action@v1.2.1
+      with:
+        java-version: '17'
+        maven-version: '3.8.7'   
+    - name: Create Custom settings xml
+      uses: whelk-io/maven-settings-xml-action@v20
+      with:
+        servers: >
+          [
+            {
+               "id"       : "MuleRepository",
+               "username" : "${{ secrets.ANYPOINT_PLATFORM_USERNAME}}",
+               "password" : "${{ secrets.ANYPOINT_PLATFORM_PASSWORD}}"
+            },
+            {
+               "id"       : "anypoint-exchange-v3",
+               "username" : "${{ secrets.ANYPOINT_PLATFORM_USERNAME}}",
+               "password" : "${{ secrets.ANYPOINT_PLATFORM_PASSWORD}}"
+            },
+            {
+               "id"       : "mulesoft-releases",
+               "username" : "${{ secrets.ANYPOINT_PLATFORM_USERNAME}}",
+               "password" : "${{ secrets.ANYPOINT_PLATFORM_PASSWORD}}"
+            }
+          ]
+        output_file: .m2/settings.xml
     - name: Checkout this repo
       uses: actions/checkout@v3
     - name: Cache dependencies
@@ -74,4 +101,4 @@ jobs:
       with:
         name: artifacts
     - name: Deploy to DESIGN
-      run: mvn clean deploy -DskipTests -DmuleDeploy -Danypoint.username= ${{ secrets.anypoint_platform_username }} -Danypoint.password=${{ secrets.anypoint_platform_password }} -Denv=${{ secrets.ENVIRONMENT }}
+      run: mvn clean deploy -B -s .m2/settings.xml -DskipTests -DmuleDeploy -Denv=${{ secrets.ENVIRONMENT }}
