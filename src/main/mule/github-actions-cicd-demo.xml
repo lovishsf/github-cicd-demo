@@ -6,8 +6,9 @@
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd">
 	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="c8a85a92-e37c-45b9-a646-6907e1a1ed9e" >
-		<http:listener-connection host="0.0.0.0" port="8081" />
+		<http:listener-connection host="0.0.0.0" port="${http.port}" />
 	</http:listener-config>
+	<configuration-properties doc:name="Configuration properties" doc:id="4c80bbb2-36fc-497c-a1ba-109a223aeefe" file="properties.yaml" />
 	<flow name="github-actions-cicd-demoFlow" doc:id="4d07a2a0-546e-42b9-a79b-d81fc2fcbc58" >
 		<http:listener doc:name="Listener" doc:id="fedfaebc-a914-4807-9e44-2d30d9bb3f63" config-ref="HTTP_Listener_config" path="/cicd-demo"/>
 		<ee:transform doc:name="Transform Message" doc:id="33a566a9-cc2f-48db-a466-ec4e5e68b988" >
