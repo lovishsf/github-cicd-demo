@@ -6,7 +6,7 @@
 
 	<groupId>58a39297-8e74-498d-87fa-5a7bd547ee56</groupId>
 	<artifactId>github-actions-cicd-demo</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>github-actions-cicd-demo</name>
