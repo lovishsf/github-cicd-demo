@@ -6,7 +6,7 @@
 
 	<groupId>58a39297-8e74-498d-87fa-5a7bd547ee56</groupId>
 	<artifactId>github-actions-cicd-demo</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.4-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>github-actions-cicd-demo</name>
@@ -36,14 +36,15 @@
 					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
-						<muleVersion>4.9.3</muleVersion>
+						<muleVersion>4.9.3:3</muleVersion>
 	                    <server>Repository</server>
 						<applicationName>${project.artifactId}</applicationName>
 						<environment>${env}</environment>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
 						<target>Cloudhub-US-East-2</target>
-						<releaseChannel>Edge</releaseChannel>
+						<releaseChannel>LTS</releaseChannel>
+						<javaVersion>17</javaVersion>
 						<deploymentSettings>
 							<http>
 								<inbound>
