@@ -6,7 +6,7 @@
 
 	<groupId>58a39297-8e74-498d-87fa-5a7bd547ee56</groupId>
 	<artifactId>github-actions-cicd-demo</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
+	<version>1.0.1-SNAPSHOT</version>
 	<packaging>mule-application</packaging>
 
 	<name>github-actions-cicd-demo</name>
@@ -15,7 +15,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-		<app.runtime>4.9.0</app.runtime>
+		<app.runtime>4.9.3</app.runtime>
 		<mule.maven.plugin.version>4.3.0</mule.maven.plugin.version>
 	</properties>
 
@@ -36,12 +36,14 @@
 					<cloudhub2Deployment>
 						<uri>https://anypoint.mulesoft.com</uri>
 						<provider>MC</provider>
-						<muleVersion>4.9.0</muleVersion>
-						<applicationName>mule-github-cicd-demo-${env}</applicationName>
+						<muleVersion>4.9.3</muleVersion>
+	                    <server>Repository</server>
+						<applicationName>${project.artifactId}</applicationName>
 						<environment>${env}</environment>
 						<replicas>1</replicas>
 						<vCores>1</vCores>
-						<target>Cloudhub-US-East-1</target>
+						<target>Cloudhub-US-East-2</target>
+						<releaseChannel>Edge</releaseChannel>
 						<deploymentSettings>
 							<http>
 								<inbound>
@@ -73,7 +75,7 @@
 	</dependencies>
 	<distributionManagement>
 		<repository>
-			<id>anypoint-exchange-v3</id>
+			<id>Repository</id>
 			<name>Corporate Repository</name>
 			<url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
 			<layout>default</layout>
@@ -92,6 +94,12 @@
 			<url>https://repository.mulesoft.org/releases/</url>
 			<layout>default</layout>
 		</repository>
+		<repository>
+            <id>Repository</id>
+            <name>Private Exchange repository</name>
+            <url>https://maven.anypoint.mulesoft.com/api/v3/organizations/${project.groupId}/maven</url>
+            <layout>default</layout>
+        </repository>
 	</repositories>
 
 	<pluginRepositories>
